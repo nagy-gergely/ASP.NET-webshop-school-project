@@ -1,0 +1,64 @@
+﻿@model musicweb.Models.ComicBook
+@{
+    ViewBag.Title = "Comic Book Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Comic Book Form</h2>
+
+@using (Html.BeginForm("SaveComicBook", "Home"))
+{
+    <div class="row">
+        <div class="col-sm-6">
+            @Html.HiddenFor(c => c.Id)
+            <div class="form-group">
+                @Html.LabelFor(c => c.Title)
+                @Html.TextBoxFor(c => c.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Title, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.Published)
+                @Html.TextBoxFor(c => c.Published, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(c => c.Published, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.Writer)
+                @Html.TextBoxFor(c => c.Writer, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Writer, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.Penciler)
+                @Html.TextBoxFor(c => c.Penciler, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Penciler, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.CoverArtist)
+                @Html.TextBoxFor(c => c.CoverArtist, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.CoverArtist, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.ImageURL)
+                @Html.TextBoxFor(c => c.ImageURL, new { @class = "form-control" })
+                <small>Example: ~/Content/Images/image.jpg or image.jpg</small>
+                @Html.ValidationMessageFor(c => c.ImageURL, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.Price)
+                @Html.TextBoxFor(c => c.Price, new { @class = "form-control", type = "number", step = "0.01" })
+                @Html.ValidationMessageFor(c => c.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="from-group">
+                @Html.LabelFor(c => c.Description)
+                @Html.TextAreaFor(c => c.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+}

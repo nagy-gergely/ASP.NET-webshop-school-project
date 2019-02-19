@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="E:\Suli\3.félév\Webprog\musicweb\musicweb\obj\Release\Package\PackageTmp" />
+  <setAcl path="E:\Suli\3.félév\Webprog\musicweb\musicweb\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="E:\Suli\3.félév\Webprog\musicweb\musicweb\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

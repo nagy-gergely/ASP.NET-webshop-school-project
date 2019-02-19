@@ -1,0 +1,40 @@
+﻿@model List<musicweb.Models.ComicBook>
+@{
+      ViewBag.Title = "Webshop";
+}
+
+@using (Html.BeginForm("Search", "Home"))
+{
+    <div class="row searchbar" style="margin-bottom: 20px;">
+        <div class="col-md-12">
+            <div class="form-inline my-2 my-lg-0">
+                <input name="searchbox" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card col-md-3">
+            <a href="@Url.Action("Details", "Home", new { id = item.Id }, null)">
+                <img class="card-img-top comic-cover" src="@Url.Content(item.ImageURL)" alt="@item.Title" />
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">
+                    @Html.ActionLink(item.Title, "Details", "Home", new { id = item.Id }, null)
+                </h5>
+            </div>
+        </div>
+    }
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="col-md-3 icon-center">
+            <a href="@Url.Action("New", "Home")">
+                <span class="plus-icon"><i class="fa fa-plus-square"></i></span>
+            </a>
+        </div>
+    }
+</div>

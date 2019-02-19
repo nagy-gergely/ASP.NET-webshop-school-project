@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ComicBookDAL-Web.config Connection String" description="ComicBookDAL Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\ProjectsV13;Initial Catalog=Webshop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\Suli\\3\.félév\\Webprog\\musicweb\\musicweb\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ComicBookDAL']/@connectionString" />
+  </parameter>
+  <parameter name="UserDB-Web.config Connection String" description="UserDB Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\ProjectsV13;Initial Catalog=Users;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\Suli\\3\.félév\\Webprog\\musicweb\\musicweb\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='UserDB']/@connectionString" />
+  </parameter>
+</parameters>

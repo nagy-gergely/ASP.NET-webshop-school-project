@@ -1,0 +1,58 @@
+﻿@model List<musicweb.Models.ShoppingCart>
+@{
+    var comicBookDAL = new musicweb.DataAccessLayer.ComicBookDAL();
+    var comicBooks = comicBookDAL.ComicBooks;
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Count == 0)
+{
+    <h2><i class="fa fa-shopping-cart"></i> You don't have any items in your cart. Let's get shopping!</h2>
+}
+else
+{
+    <h2><i class="fa fa-shopping-cart"></i> Shopping Cart</h2>
+
+    double totalPrice = 0;
+    foreach (var item in Model)
+    {
+        var comicBook = comicBooks.Single(c => c.Id == item.ComicBookId);
+        totalPrice += comicBook.Price;
+        <div class="row cart-item">
+            <div class="col-md-2">
+                <img src="@Url.Content(comicBook.ImageURL)" alt="@comicBook.Title" class="cart-cover" />
+            </div>
+            <div class="col-md-6">
+                <h3>@Html.ActionLink(comicBook.Title, "Details", "Home", new { id = comicBook.Id }, null)</h3>
+            </div>
+            <div class="col-md-2">
+                <h3>$@comicBook.Price</h3>
+            </div>
+            <div class="col-md-2 remove-btn">
+                @using (Html.BeginForm("Delete", "ShoppingCart", new { id = item.RecordID }))
+                {
+                    <button type="submit" class="btn btn-secondary">Remove</button>
+                }
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-2">
+            <h3>Total: </h3>
+        </div>
+        <div class="col-md-2">
+            <h3>$@totalPrice</h3>
+        </div>
+        <div class="col-md-2">
+            @using (Html.BeginForm("Order", "ShoppingCart"))
+            {
+                <button class="btn btn-secondary" type="submit">Order</button>
+            }
+        </div>
+    </div>
+}
+
+
+

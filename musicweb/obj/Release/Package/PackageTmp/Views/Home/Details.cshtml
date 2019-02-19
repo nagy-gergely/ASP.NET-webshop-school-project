@@ -1,0 +1,79 @@
+﻿@model musicweb.Models.ComicBook
+
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-5">
+        <img src="@Url.Content(Model.ImageURL)" class="img-thumbnail" alt="@Model.Title" />
+    </div>
+    <div class="col-sm-7">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>@Model.Title</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Published:</h3>
+                <p>@Model.Published.ToShortDateString()</p>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.Writer != null)
+            {
+                <div class="col-sm-6">
+                    <h3>Writer:</h3>
+                    <p>@Model.Writer</p>
+                </div>
+            }
+            @if (Model.Penciler != null)
+            {
+                <div class="col-sm-6">
+                    <h3>Penciler:</h3>
+                    <p>@Model.Penciler</p>
+                </div>
+            }
+            @if (Model.CoverArtist != null)
+            {
+                <div class="col-sm-6">
+                    <h3>Cover Artist:</h3>
+                    <p>@Model.CoverArtist</p>
+                </div>
+            }
+        </div>
+        @if (Model.Description != null)
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>@Model.Description</p>
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>Price: </h3>
+                <h5>$@Model.Price</h5>
+            </div>
+            <div class="col-sm-4">
+                @using (Html.BeginForm("Add", "ShoppingCart", new { comicBookId = Model.Id }))
+                {
+                    <button type="submit" class="btn btn-secondary">Add to cart</button>
+                }
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+<p>
+    @if (User.IsInRole("Admin"))
+    { 
+        @Html.ActionLink("Edit", "Edit", "Home", new { id = Model.Id }, null) <span> | </span>
+        @Html.ActionLink("Delete", "Delete", "Home", new { id = Model.Id }, null) <span> | </span>
+    }
+    @Html.ActionLink("Back to List", "Index", "Home")
+</p>
